@@ -8,4 +8,9 @@ const httpClient = axios.create({
     }
 });
 
+httpClient.interceptors.request.use(config=>{
+    console.log('Request: ', config.method, config.url);
+    return config;
+});
+
 export default httpClient;
