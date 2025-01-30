@@ -1,15 +1,15 @@
 import {useEffect, useState} from "react";
 import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
 import {Link} from "react-router";
+import httpClient from "../../common/httpClient.ts";
+import Category from "../../common/types/category.ts";
 
 function ListCategory(){
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(()=>{
-        const target = 'http://localhost:8000/api/category';
-        fetch(target)
-            .then(response => response.json())
-            .then(data => setCategories(data));
+        httpClient.get<Category[]>('/category')
+            .then(response => setCategories(response.data));
     }, []);
 
     return(
@@ -40,7 +40,7 @@ function ListCategory(){
 
                 {categories.length > 0 && (
                     categories.map((category: any) => (
-                        <tr className={'border border-gray-200'}>
+                        <tr className={'border border-gray-200'} key={category.id}>
                             <td className={'border border-gray-200 p-2'}>{category.id}</td>
                             <td className={'border border-gray-200 p-2'}>{category.name}</td>
                             <td className={'border border-gray-200 p-2'}>{category.description}</td>

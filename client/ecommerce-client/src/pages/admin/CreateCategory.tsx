@@ -1,20 +1,17 @@
 import Button from "../../components/Button.tsx";
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
+import httpClient from "../../common/httpClient.ts";
+import Category from "../../common/types/category.ts";
 
 function CreateCategory(){
     const {id} = useParams<{id: string}>();
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState<Category | null>(null);
 
     useEffect(()=>{
         if(id){
-            fetch(`http://localhost:8000/api/category/${id}`)
-                .then(response => response.json())
-                .then(data => {
-                    setName(data.name);
-                    setDescription(data.description);
-                });
+            httpClient.get<Category>(`/category/${id}`)
+                .then(response => setCategory(response.data))
         }
     },[])
 
@@ -30,7 +27,7 @@ function CreateCategory(){
                     <input type="text"
                            className={'border border-gray-400 focus:outline-2 focus:outline-indigo-200 p-2 w-full rounded'}
                            required
-                           value={name}
+                           value={category?.name}
                     />
                 </div>
 
@@ -38,7 +35,7 @@ function CreateCategory(){
                     <label>Description</label>
                     <textarea rows={3}
                               className={'border border-gray-400 focus:outline-2 focus:outline-indigo-200 p-2 w-full rounded'}
-                              required value={description}></textarea>
+                              required value={category?.description}></textarea>
                 </div>
 
                 <div className={'flex justify-end'}>
