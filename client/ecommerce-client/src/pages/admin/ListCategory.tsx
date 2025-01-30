@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
+import {Link} from "react-router";
 
 function ListCategory(){
     const [categories, setCategories] = useState([]);
@@ -9,11 +10,15 @@ function ListCategory(){
         fetch(target)
             .then(response => response.json())
             .then(data => setCategories(data));
-    })
+    }, []);
 
     return(
         <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold text-center">Category List</h1>
+
+            <div className={'flex justify-end'}>
+                <Link to="create" className={'underline'}>+ Create Category</Link>
+            </div>
 
             <table className={'min-w-full border border-gray-200 mt-16'}>
                 <thead>
