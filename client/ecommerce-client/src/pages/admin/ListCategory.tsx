@@ -45,7 +45,9 @@ function ListCategory(){
                             <td className={'border border-gray-200 p-2'}>{category.name}</td>
                             <td className={'border border-gray-200 p-2'}>{category.description}</td>
                             <td className={'border border-gray-200 p-2'}>
-                                Edit | Delete
+                                <Link to={`edit/${category.id}`} className={'text-indigo-600'}>Edit</Link>
+                                |
+                                <Link to={`edit/${category.id}`} className={'text-red-600'}>Delete</Link>
                             </td>
                         </tr>
                     ))
