@@ -7,6 +7,8 @@ import About from "./pages/About.tsx";
 import Layout from "./pages/Layout.tsx";
 import ListCategory from "./pages/admin/ListCategory.tsx";
 import CreateCategory from "./pages/admin/CreateCategory.tsx";
+import ListProduct from "./pages/admin/ListProduct.tsx";
+import CreateProduct from "./pages/admin/CreateProduct.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,6 +20,8 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/admin/category" element={<ListCategory/>}></Route>
                 <Route path="/admin/category/create" element={<CreateCategory/>}></Route>
                 <Route path="/admin/category/edit/:id" element={<CreateCategory/>}></Route>
+                <Route path="/admin/product" element={<ListProduct/>}></Route>
+                <Route path="/admin/product/create" element={<CreateProduct/>}></Route>
             </Route>
         </Routes>
     </BrowserRouter>
