@@ -25,7 +25,6 @@ function CreateCategory(){
     const {id} = useParams<{id: string}>();
     const [category, setCategory] = useState<Category | null>(null);
     const {register, handleSubmit, formState, reset} = useForm<FormFields>({
-        disabled: false,
         mode: 'all',
         resolver: yupResolver(validationSchema)
     });
@@ -37,24 +36,23 @@ function CreateCategory(){
                 .then(response => {
                     setCategory(response.data.data);
                     reset({
-                        name: category!.name,
-                        description: category!.description
+                        name: response.data.data.name,
+                        description: response.data.data.description
                     });
                 })
-            // httpClient.get<Category>(`/category/${id}`)
-            //     .then(response => {
-            //         setCategory(response.data);
-            //         reset({
-            //             name: response.data.name,
-            //             description: response.data.description
-            //         });
-            //     })
         }
+        console.log('loaded')
     },[])
 
     const handleOnSubmit = (data: FormFields) => {
-        CategoryService.create(data.name, data.description)
-            .then(_ => alert('Category created successfully.'));
+        if(id){
+            CategoryService.create(data.name, data.description)
+                .then(_ => alert('Category created successfully.'));
+        }
+        else{
+            CategoryService.update(Number(id), data.name, data.description)
+                .then(_ => alert('Category updated successfully.'));
+        }
     }
 
     return(

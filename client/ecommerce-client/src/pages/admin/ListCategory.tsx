@@ -16,6 +16,8 @@ function ListCategory(){
     }, []);
 
     function handleOnDelete(event:SyntheticEvent) {
+        if(!confirm('Are you sure you want to delete this category?')) return;
+
         const target = event.target as HTMLElement;
         const id = Number(target.dataset.id);
 
@@ -61,7 +63,7 @@ function ListCategory(){
                             <td className={'border border-gray-200 p-2'}>
                                 <Link to={`edit/${category.id}`} className={'text-indigo-600'}>Edit</Link>
                                 |
-                                <span className={'text-red-600'} data-id={category.id} onClick={handleOnDelete}>Delete</span>
+                                <span className={'text-red-600 cursor-default'} data-id={category.id} onClick={handleOnDelete}>Delete</span>
                             </td>
                         </tr>
                     ))

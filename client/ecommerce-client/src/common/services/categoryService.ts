@@ -15,6 +15,10 @@ export default class CategoryService{
         return httpClient.post<Result<Category>>('/category/', {name, description});
     }
 
+    static update(id: number, name: string, description: string) {
+        return httpClient.put<Result<Category>>('/category/' + id, {name, description});
+    }
+
     static delete(id: number) {
         return httpClient.delete<Result<Category>>('/category/' + id);
     }
