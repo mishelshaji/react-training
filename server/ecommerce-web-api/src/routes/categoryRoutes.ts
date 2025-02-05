@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getAll, getOne} from "../controllers/categoryController";
+import {create, getAll, getOne} from "../controllers/categoryController";
 
 const router = Router();
 
@@ -7,5 +7,7 @@ const router = Router();
 router.get('/api/category', getAll);
 // @ts-ignore
 router.get('/api/category/:id', getOne);
+// @ts-ignore
+router.post('/api/category', create)
 
 export default router;

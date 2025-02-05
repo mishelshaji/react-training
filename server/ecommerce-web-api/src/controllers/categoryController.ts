@@ -19,9 +19,10 @@ export const getOne = (request: Request, res: Response) => {
 }
 
 export const create = (request: Request, res: Response) => {
+    console.log(request.body);
     const {name, description} = request.body;
     const result = createCategory(name, description);
-    return res.status(200).json(result);
+    return res.status(200).json({});
 }
 
 export const update = (request: Request, res: Response) => {

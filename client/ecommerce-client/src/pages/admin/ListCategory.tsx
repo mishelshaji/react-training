@@ -1,15 +1,18 @@
 import {useEffect, useState} from "react";
 import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
 import {Link} from "react-router";
-import httpClient from "../../common/httpClient.ts";
 import Category from "../../common/types/category.ts";
+import CategoryService from "../../common/services/categoryService.ts";
 
 function ListCategory(){
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(()=>{
-        httpClient.get<Category[]>('/category')
-            .then(response => setCategories(response.data));
+        // httpClient.get<Category[]>('/category')
+        //     .then(response => setCategories(response.data));
+
+        CategoryService.getAll()
+            .then(response => setCategories(response.data.data));
     }, []);
 
     return(

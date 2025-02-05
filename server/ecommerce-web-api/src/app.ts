@@ -1,10 +1,12 @@
 import express from 'express';
 import categoryRoutes from "./routes/categoryRoutes";
 import cors from "cors"
+import bodyParser from "body-parser";
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
+app.use(bodyParser.json())
 app.use(cors({
     origin: '*',
     methods: 'GET,POST,PUT,PATCH,DELETE'

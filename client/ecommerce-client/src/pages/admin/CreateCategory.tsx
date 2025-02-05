@@ -5,6 +5,7 @@ import Category from "../../common/types/category.ts";
 import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import Button from "../../components/Button.tsx";
 
 interface FormFields {
     name: string;
@@ -44,7 +45,8 @@ function CreateCategory(){
     },[])
 
     const handleOnSubmit = (data: FormFields) => {
-        console.log(data);
+        httpClient.post('/category', data)
+            .then(response => console.log(response));
     }
 
     return(
@@ -76,7 +78,7 @@ function CreateCategory(){
                 </div>
 
                 <div className={'flex justify-end'}>
-                    <button type="submit">Save</button>
+                    <Button content="Save" type="submit" severity="primary"></Button>
                 </div>
             </form>
         </div>

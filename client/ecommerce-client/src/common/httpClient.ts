@@ -1,7 +1,8 @@
 import axios from "axios";
+import AuthService from "./services/authService.ts";
 
 const httpClient = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: 'https://localhost:44377',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'
@@ -9,7 +10,9 @@ const httpClient = axios.create({
 });
 
 httpClient.interceptors.request.use(config=>{
-    console.log('Request: ', config.method, config.url);
+    if(AuthService.tokenExists()){
+        config.headers!.Authorization = 'Bearer ' + AuthService.getToken();
+    }
     return config;
 });
 
