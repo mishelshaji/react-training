@@ -1,11 +1,11 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import httpClient from "../../common/httpClient.ts";
 import Category from "../../common/types/category.ts";
 import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import Button from "../../components/Button.tsx";
+import CategoryService from "../../common/services/categoryService.ts";
 
 interface FormFields {
     name: string;
@@ -33,20 +33,28 @@ function CreateCategory(){
 
     useEffect(()=>{
         if(id){
-            httpClient.get<Category>(`/category/${id}`)
+            CategoryService.getOne(Number(id))
                 .then(response => {
-                    setCategory(response.data);
+                    setCategory(response.data.data);
                     reset({
-                        name: response.data.name,
-                        description: response.data.description
+                        name: category!.name,
+                        description: category!.description
                     });
                 })
+            // httpClient.get<Category>(`/category/${id}`)
+            //     .then(response => {
+            //         setCategory(response.data);
+            //         reset({
+            //             name: response.data.name,
+            //             description: response.data.description
+            //         });
+            //     })
         }
     },[])
 
     const handleOnSubmit = (data: FormFields) => {
-        httpClient.post('/category', data)
-            .then(response => console.log(response));
+        CategoryService.create(data.name, data.description)
+            .then(_ => alert('Category created successfully.'));
     }
 
     return(

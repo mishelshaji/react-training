@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
 import {Link} from "react-router";
 import Category from "../../common/types/category.ts";
@@ -14,6 +14,17 @@ function ListCategory(){
         CategoryService.getAll()
             .then(response => setCategories(response.data.data));
     }, []);
+
+    function handleOnDelete(event:SyntheticEvent) {
+        const target = event.target as HTMLElement;
+        const id = Number(target.dataset.id);
+
+        CategoryService.delete(id)
+            .then(_ => alert('Category deleted successfully.'));
+
+        // Remove the deleted category from the list
+        setCategories(categories.filter(category => category.id !== id));
+    }
 
     return(
         <div className="container mx-auto px-4">
@@ -50,7 +61,7 @@ function ListCategory(){
                             <td className={'border border-gray-200 p-2'}>
                                 <Link to={`edit/${category.id}`} className={'text-indigo-600'}>Edit</Link>
                                 |
-                                <Link to={`edit/${category.id}`} className={'text-red-600'}>Delete</Link>
+                                <span className={'text-red-600'} data-id={category.id} onClick={handleOnDelete}>Delete</span>
                             </td>
                         </tr>
                     ))
