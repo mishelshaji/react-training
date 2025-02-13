@@ -2,7 +2,7 @@ import axios from "axios";
 import AuthService from "./services/authService.ts";
 
 const httpClient = axios.create({
-    baseURL: 'https://localhost:44377',
+    baseURL: 'https://localhost:7283',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'

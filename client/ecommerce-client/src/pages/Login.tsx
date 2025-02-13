@@ -5,6 +5,7 @@ import Button from "../components/Button.tsx";
 import AuthService from "../common/services/authService.ts";
 import {useState} from "react";
 import AlertDanger from "../components/alerts/AlertDanger.tsx";
+import {useNavigate} from "react-router";
 
 interface FormFields {
     email: string;
@@ -25,6 +26,7 @@ const validationSchema = Yup.object({
 function Login() {
 
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const {register, handleSubmit, formState} = useForm<FormFields>({
         mode: 'all',
@@ -34,7 +36,10 @@ function Login() {
     const handleOnSubmit: SubmitHandler<FormFields> = (data) => {
         console.log(data);
         AuthService.authenticate(data.email, data.password)
-            .then(res => AuthService.setToken(res.data.data))
+            .then(res => {
+                AuthService.setToken(res.data.data);
+                navigate('/');
+            })
             .catch(error => setError(error.response.data.message));
     }
 

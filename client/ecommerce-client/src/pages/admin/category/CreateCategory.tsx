@@ -1,11 +1,12 @@
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
-import Category from "../../common/types/category.ts";
+import Category from "../../../common/types/category.ts";
 import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import Button from "../../components/Button.tsx";
-import CategoryService from "../../common/services/categoryService.ts";
+import Button from "../../../components/Button.tsx";
+import CategoryService from "../../../common/services/categoryService.ts";
+import {toast} from "react-toastify";
 
 interface FormFields {
     name: string;
@@ -23,11 +24,12 @@ const validationSchema = Yup.object({
 
 function CreateCategory(){
     const {id} = useParams<{id: string}>();
-    const [category, setCategory] = useState<Category | null>(null);
+    const [_category, setCategory] = useState<Category | null>(null);
     const {register, handleSubmit, formState, reset} = useForm<FormFields>({
         mode: 'all',
         resolver: yupResolver(validationSchema)
     });
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -41,17 +43,22 @@ function CreateCategory(){
                     });
                 })
         }
-        console.log('loaded')
     },[])
 
     const handleOnSubmit = (data: FormFields) => {
-        if(id){
+        if(!id){
             CategoryService.create(data.name, data.description)
-                .then(_ => alert('Category created successfully.'));
+                .then(_ => {
+                    toast.success('Category created successfully.');
+                    navigate('/admin/category');
+                });
         }
         else{
             CategoryService.update(Number(id), data.name, data.description)
-                .then(_ => alert('Category updated successfully.'));
+                .then(_ => {
+                    toast.success('Category updated successfully.');
+                    navigate('/admin/category');
+                });
         }
     }
 
@@ -67,7 +74,6 @@ function CreateCategory(){
                     <input type="text"
                            className={'border border-gray-400 focus:outline-2 focus:outline-indigo-200 p-2 w-full rounded'}
                            {...register('name')}
-                           value={category?.name}
                     />
 
                     {formState.errors.name && <p className="text-red-600">{formState.errors.name.message}</p>}
@@ -77,8 +83,7 @@ function CreateCategory(){
                     <label>Description</label>
                     <textarea rows={3}
                               className={'border border-gray-400 focus:outline-2 focus:outline-indigo-200 p-2 w-full rounded'}
-                              {...register('description')}
-                              value={category?.description}></textarea>
+                              {...register('description')}></textarea>
 
                     {formState.errors.description && <p className="text-red-600">{formState.errors.description.message}</p>}
                 </div>

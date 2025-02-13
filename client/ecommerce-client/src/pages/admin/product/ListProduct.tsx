@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
+import AlertPrimary from "../../../components/alerts/AlertPrimary.tsx";
 import {Link} from "react-router";
-import httpClient from "../../common/httpClient.ts";
-import Product from "../../common/types/product.ts";
+import httpClient from "../../../common/httpClient.ts";
+import Product from "../../../common/types/product.ts";
 
 function ListProduct(){
     const [products, setProducts] = useState<Product[]>([]);

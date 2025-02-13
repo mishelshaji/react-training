@@ -1,11 +1,11 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import httpClient from "../../common/httpClient.ts";
-import Category from "../../common/types/category.ts";
+import httpClient from "../../../common/httpClient.ts";
+import Category from "../../../common/types/category.ts";
 import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import Product from "../../common/types/product.ts";
+import Product from "../../../common/types/product.ts";
 
 interface FormFields {
     name: string;

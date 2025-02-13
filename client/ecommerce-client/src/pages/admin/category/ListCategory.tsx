@@ -1,8 +1,8 @@
 import {SyntheticEvent, useEffect, useState} from "react";
-import AlertPrimary from "../../components/alerts/AlertPrimary.tsx";
+import AlertPrimary from "../../../components/alerts/AlertPrimary.tsx";
 import {Link} from "react-router";
-import Category from "../../common/types/category.ts";
-import CategoryService from "../../common/services/categoryService.ts";
+import Category from "../../../common/types/category.ts";
+import CategoryService from "../../../common/services/categoryService.ts";
 
 function ListCategory(){
     const [categories, setCategories] = useState<Category[]>([]);
