@@ -17,7 +17,7 @@ function Button(props: ButtonProps) {
     return (
         <button
             type={props.type? props.type: "button"}
-            className={`${buttonClass} p-2 rounded text-white`}>
+            className={`${buttonClass} p-2 rounded text-white w-full`}>
             { props.content }
         </button>
     )

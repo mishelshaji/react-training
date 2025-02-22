@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { ToastContainer } from 'react-toastify';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './index.css'
 import PublicLayout from "./pages/public/PublicLayout.tsx";
@@ -15,6 +16,7 @@ import AdminHome from "./pages/admin/AdminHome.tsx";
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <BrowserRouter>
+            <ToastContainer/>
             <Routes>
                 <Route path={'/'} element={ <PublicLayout/> }>
                     <Route path={''} element={ <Home/> }></Route>
