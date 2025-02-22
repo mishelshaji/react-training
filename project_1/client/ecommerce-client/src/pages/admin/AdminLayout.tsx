@@ -36,7 +36,7 @@ function AdminLayout() {
 
                 {/* Main Area */}
                 <main className="flex-1 p-6 bg-gray-50">
-                    {AuthService.tokenExists()? <Outlet/>: <Navigate to={'/login'}/>}
+                    {AuthService.isInRole('Admin')? <Outlet/>: <Navigate to={'/login'}/>}
                 </main>
             </div>
         </div>
