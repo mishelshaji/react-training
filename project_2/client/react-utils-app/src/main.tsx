@@ -14,10 +14,14 @@ import UserHome from "./pages/user/UserHome.tsx";
 import AdminHome from "./pages/admin/AdminHome.tsx";
 import ContextDemo from "./pages/public/contextHook/ContextDemo.tsx";
 import UseMemoDemo from "./pages/public/useMemoHook/UseMemoDemo.tsx";
+import {Provider} from "react-redux";
+import {store} from "./state/store.ts";
+import App from "./App.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
             <ToastContainer/>
             <Routes>
                 <Route path={'/'} element={ <PublicLayout/> }>
@@ -36,9 +40,11 @@ createRoot(document.getElementById('root')!).render(
 
                 <Route path="/context" element={<ContextDemo/>}/>
                 <Route path="/memo" element={<UseMemoDemo/>}/>
+                <Route path="/store" element={<App/>}/>
 
                 <Route path={'*'} element={<Error404/>}></Route>
             </Routes>
         </BrowserRouter>
+        </Provider>
     </StrictMode>,
 )
