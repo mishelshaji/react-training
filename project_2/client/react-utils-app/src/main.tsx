@@ -12,6 +12,7 @@ import Login from "./pages/public/Login.tsx";
 import Register from "./pages/public/Register.tsx";
 import UserHome from "./pages/user/UserHome.tsx";
 import AdminHome from "./pages/admin/AdminHome.tsx";
+import ContextDemo from "./pages/public/contextHook/ContextDemo.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -31,6 +32,8 @@ createRoot(document.getElementById('root')!).render(
                 <Route path={'/admin'} element={<AdminLayout />}>
                     <Route path={'home'} element={ <AdminHome/> }></Route>
                 </Route>
+
+                <Route path="/context" element={<ContextDemo/>}/>
 
                 <Route path={'*'} element={<Error404/>}></Route>
             </Routes>
