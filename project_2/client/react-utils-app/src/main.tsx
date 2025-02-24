@@ -13,6 +13,7 @@ import Register from "./pages/public/Register.tsx";
 import UserHome from "./pages/user/UserHome.tsx";
 import AdminHome from "./pages/admin/AdminHome.tsx";
 import ContextDemo from "./pages/public/contextHook/ContextDemo.tsx";
+import UseMemoDemo from "./pages/public/useMemoHook/UseMemoDemo.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')!).render(
                 </Route>
 
                 <Route path="/context" element={<ContextDemo/>}/>
+                <Route path="/memo" element={<UseMemoDemo/>}/>
 
                 <Route path={'*'} element={<Error404/>}></Route>
             </Routes>
