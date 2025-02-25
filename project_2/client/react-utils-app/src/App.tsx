@@ -13,7 +13,7 @@ function App() {
             <h2 className="text-center text-2xl">{count}</h2>
 
             <button className="bg-amber-500 p-2 rounded" onClick={()=> dispatch(increment())}>Increase</button>
-            <button className="bg-amber-500 p-2 rounded" onClick={()=>dispatch(decrement())}>Decrease</button>
+            <button className="bg-amber-500 p-2 rounded" onClick={()=> dispatch(decrement())}>Decrease</button>
         </div>
     )
 }

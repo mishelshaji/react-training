@@ -17,6 +17,7 @@ import UseMemoDemo from "./pages/public/useMemoHook/UseMemoDemo.tsx";
 import {Provider} from "react-redux";
 import {store} from "./state/store.ts";
 import App from "./App.tsx";
+import Todo from "./pages/public/Todo.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path={''} element={ <Home/> }></Route>
                     <Route path={'login'} element={ <Login/> }></Route>
                     <Route path={'register'} element={ <Register/> }></Route>
+                    <Route path={'todo'} element={ <Todo/> }></Route>
                 </Route>
 
                 <Route path={'/user'} element={ <UserLayout /> }>
