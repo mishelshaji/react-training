@@ -18,9 +18,16 @@ import {Provider} from "react-redux";
 import {store} from "./state/store.ts";
 import App from "./App.tsx";
 import Todo from "./pages/public/Todo.tsx";
+import Demo from "./pages/public/Demo.tsx";
+import Cleanup from "./pages/public/Cleanup.tsx";
+import Colors from "./pages/tailwind/Colors.tsx";
+import Effects from "./pages/tailwind/Effects.tsx";
+import Border from "./pages/tailwind/Border.tsx";
+import Roundness from "./pages/tailwind/Roundness.tsx";
+import HeightAndWidth from "./pages/tailwind/HeightAndWidth.tsx";
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
+    // <StrictMode>
         <Provider store={store}>
             <BrowserRouter>
             <ToastContainer/>
@@ -30,6 +37,8 @@ createRoot(document.getElementById('root')!).render(
                     <Route path={'login'} element={ <Login/> }></Route>
                     <Route path={'register'} element={ <Register/> }></Route>
                     <Route path={'todo'} element={ <Todo/> }></Route>
+                    <Route path={'demo'} element={ <Demo/> }></Route>
+                    <Route path={'cleanup'} element={ <Cleanup/> }></Route>
                 </Route>
 
                 <Route path={'/user'} element={ <UserLayout /> }>
@@ -40,6 +49,14 @@ createRoot(document.getElementById('root')!).render(
                     <Route path={'home'} element={ <AdminHome/> }></Route>
                 </Route>
 
+                <Route path={'/tw'} element={<PublicLayout />}>
+                    <Route path={'colors'} element={ <Colors/> }></Route>
+                    <Route path={'effects'} element={ <Effects/> }></Route>
+                    <Route path={'border'} element={ <Border/> }></Route>
+                    <Route path={'roundness'} element={ <Roundness/> }></Route>
+                    <Route path={'hw'} element={ <HeightAndWidth/> }></Route>
+                </Route>
+
                 <Route path="/context" element={<ContextDemo/>}/>
                 <Route path="/memo" element={<UseMemoDemo/>}/>
                 <Route path="/store" element={<App/>}/>
@@ -48,5 +65,5 @@ createRoot(document.getElementById('root')!).render(
             </Routes>
         </BrowserRouter>
         </Provider>
-    </StrictMode>,
+    // </StrictMode>,
 )

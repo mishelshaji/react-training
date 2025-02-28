@@ -1,10 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../state/store.ts";
+import {AppDispatch, RootState} from "../../state/store.ts";
 import {useEffect} from "react";
 import {fetchToDoList} from "../../state/todoSlice.ts";
 
 function Todo() {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const todos = useSelector((state: RootState) => state.todos);
 
     useEffect(() => {
