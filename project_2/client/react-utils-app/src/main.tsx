@@ -25,6 +25,8 @@ import Effects from "./pages/tailwind/Effects.tsx";
 import Border from "./pages/tailwind/Border.tsx";
 import Roundness from "./pages/tailwind/Roundness.tsx";
 import HeightAndWidth from "./pages/tailwind/HeightAndWidth.tsx";
+import Grid from "./pages/tailwind/Grid.tsx";
+import Responsive from "./pages/tailwind/Responsive.tsx";
 
 createRoot(document.getElementById('root')!).render(
     // <StrictMode>
@@ -55,6 +57,8 @@ createRoot(document.getElementById('root')!).render(
                     <Route path={'border'} element={ <Border/> }></Route>
                     <Route path={'roundness'} element={ <Roundness/> }></Route>
                     <Route path={'hw'} element={ <HeightAndWidth/> }></Route>
+                    <Route path={'grid'} element={ <Grid/> }></Route>
+                    <Route path={'responsive'} element={ <Responsive/> }></Route>
                 </Route>
 
                 <Route path="/context" element={<ContextDemo/>}/>
