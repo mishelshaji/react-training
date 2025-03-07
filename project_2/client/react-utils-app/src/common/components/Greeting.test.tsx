@@ -5,6 +5,6 @@ import "@testing-library/jest-dom";
 describe('Greeting Component', () => {
     test('Greeting Text', ()=>{
         render(<Greeting/>);
-        expect(screen.getByText('Hi there again!')).toBeInTheDocument();
+        expect(screen.getByText('Hi there!')).toBeInTheDocument();
     })
 });
